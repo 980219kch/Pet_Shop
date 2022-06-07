@@ -3,8 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="member">
-
+<mapper namespace="Member">
+    <insert id="save" parameterType="member">
+        insert into member_table(memberId, memberPassword, memberName, memberEmail, memberMobile, memberAddress)
+        values (#{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile}, #{memberAddress})
+    </insert>
 </mapper>
 
 
