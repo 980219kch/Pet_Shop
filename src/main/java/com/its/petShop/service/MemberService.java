@@ -13,4 +13,13 @@ public class MemberService {
     public void save(MemberDTO memberDTO) {
         memberRepository.save(memberDTO);
     }
+
+    public String duplicateCheck(String memberId) {
+        String checkResult = memberRepository.duplicateCheck(memberId);
+        if(checkResult == null) {
+            return "no";
+        } else {
+            return "yes";
+        }
+    }
 }

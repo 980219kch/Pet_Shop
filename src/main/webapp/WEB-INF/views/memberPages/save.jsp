@@ -10,13 +10,15 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class="container">
     <h2 class="display-4 fw-normal">회원가입</h2>
     <form action="/member/save" method="post">
         <div class="py-5 text-center">
-            <input class="form-control mb-2" type="text" id="memberId" name="memberId" placeholder="아이디">
+            <input class="form-control mb-2" type="text" id="memberId" name="memberId" onblur="duplicateCheck()" placeholder="아이디">
+            <p id="dup-check-result"></p>
             <input class="form-control mb-2" type="text" id="memberPassword" name="memberPassword" placeholder="비밀번호">
             <input class="form-control mb-2" type="text" name="memberName" placeholder="이름">
             <input class="form-control mb-2" type="text" name="memberEmail" placeholder="이메일">
@@ -79,6 +81,28 @@
                 document.getElementById("sample6_detailAddress").focus();
             }
         }).open();
+    }
+
+    const duplicateCheck = () => {
+        const memberId = document.getElementById("memberId").value;
+        const checkResult = document.getElementById("dup-check-result");
+        $.ajax({
+            type: "post",
+            url: "duplicate-check",
+            data: {"memberId": memberId},
+            dataType: "text",
+            success: function (result) {
+                if(result == "no") {
+                    checkResult.innerHTML = "사용 가능한 아이디 입니다.";
+                    checkResult.style.color = "green";
+                } else {
+                    checkResult.innerHTML = "이미 사용중인 아이디입니다.";
+                    checkResult.style.color = "red";
+                }
+            },error: function () {
+                alert("오타체크");
+            }
+        });
     }
 </script>
 </html>
