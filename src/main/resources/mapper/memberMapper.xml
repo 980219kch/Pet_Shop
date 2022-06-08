@@ -23,6 +23,9 @@
     <delete id="delete" parameterType="String">
         delete from member_table where memberId=#{memberId}
     </delete>
+    <select id="findAll" resultType="member">
+        select * from member_table;
+    </select>
 </mapper>
 
 

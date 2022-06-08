@@ -5,6 +5,8 @@ import com.its.petShop.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberService {
 
@@ -39,5 +41,9 @@ public class MemberService {
 
     public void delete(String memberId) {
         memberRepository.delete(memberId);
+    }
+
+    public List<MemberDTO> findAll() {
+        return memberRepository.findAll();
     }
 }

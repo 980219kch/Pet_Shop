@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/member")
@@ -89,5 +90,17 @@ public class MemberController {
     public String delete(@RequestParam("memberId") String memberId) {
         memberService.delete(memberId);
         return "redirect:/member/logout";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "adminPages/admin";
+    }
+
+    @GetMapping("/findAll")
+    public String findAll(Model model) {
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        return "adminPages/memberList";
     }
 }

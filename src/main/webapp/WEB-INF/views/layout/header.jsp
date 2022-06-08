@@ -49,9 +49,18 @@
                 <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-                <c:if test="${not empty sessionScope.loginMemberId}">
-                    <li><a href="/member/my-page" class="nav-link px-2">마이페이지</a></li>
-                </c:if>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.loginMemberId}">
+                        <c:choose>
+                            <c:when test="${sessionScope.loginMemberId eq 'admin'}">
+                                <li><a href="/member/admin" class="nav-link px-2">관리자페이지</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="/member/my-page" class="nav-link px-2">마이페이지</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:when>
+                </c:choose>
             </ul>
 
             <div class="col-md-3 text-end">
