@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: kch80
-  Date: 2022-06-07
-  Time: 오전 10:20
+  Date: 2022-06-08
+  Time: 오전 10:40
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,28 +10,26 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-    <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
     <div class="container">
-        <h2 class="display-4 fw-normal">회원가입</h2>
-        <form action="/member/save" method="post">
-            <div class="py-5 text-center">
-                <input class="form-control mb-2" type="text" id="memberId" name="memberId" onblur="duplicateCheck()" placeholder="아이디">
-                <p id="dup-check-result"></p>
-                <input class="form-control mb-2" type="text" id="memberPassword" name="memberPassword" placeholder="비밀번호">
-                <input class="form-control mb-2" type="text" name="memberName" placeholder="이름">
-                <input class="form-control mb-2" type="text" name="memberEmail" placeholder="이메일">
-                <input class="form-control mb-2" type="text" id="memberMobile" name="memberMobile" placeholder="전화번호">
-                <input class="form-control mb-2" type="text" id="sample6_postcode" placeholder="우편번호">
+        <h2 class="display-4 fw-normal">myPage</h2>
+        <div class="py-5">
+            <form action="/member/update" method="post" name="updateForm">
+                아이디 <input class="form-control mb-2" type="text" name="memberId" value="${updateMember.memberId}" readonly>
+                비밀번호 <input class="form-control mb-2" type="text" name="memberPassword" value="${updateMember.memberPassword}">
+                이름 <input class="form-control mb-2" ype="text" name="memberName" value="${updateMember.memberName}">
+                이메일 <input class="form-control mb-2" type="text" name="memberEmail" value="${updateMember.memberEmail}">
+                전화번호 <input class="form-control mb-2" type="text" name="memberMobile" value="${updateMember.memberMobile}">
+                주소 <input class="form-control mb-2" type="text" name="memberAddress" value="${updateMember.memberAddress}" disabled>
+                변경할 주소 <input class="form-control mb-2" type="text" id="sample6_postcode" placeholder="우편번호">
                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                 <input class="form-control mb-2" type="text" id="sample6_address" name="memberAddress" placeholder="주소">
                 <input class="form-control mb-2" type="text" id="sample6_detailAddress" name="memberAddress" placeholder="상세주소">
                 <input class="form-control mb-2" type="text" id="sample6_extraAddress" name="memberAddress" placeholder="참고항목">
-                <input class="btn btn-primary" type="submit" value="회원가입">
-            </div>
-        </form>
+                <input class="btn btn-primary" type="button" onclick="update()" value="저장하기">
+            </form>
+        </div>
     </div>
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -83,27 +81,8 @@
             }
         }).open();
     }
-
-    const duplicateCheck = () => {
-        const memberId = document.getElementById("memberId").value;
-        const checkResult = document.getElementById("dup-check-result");
-        $.ajax({
-            type: "post",
-            url: "duplicate-check",
-            data: {"memberId": memberId},
-            dataType: "text",
-            success: function (result) {
-                if(result == "no") {
-                    checkResult.innerHTML = "사용 가능한 아이디 입니다.";
-                    checkResult.style.color = "green";
-                } else {
-                    checkResult.innerHTML = "이미 사용중인 아이디입니다.";
-                    checkResult.style.color = "red";
-                }
-            },error: function () {
-                alert("오타체크");
-            }
-        });
+    const update = () => {
+        updateForm.submit();
     }
 </script>
 </html>
