@@ -8,9 +8,11 @@
         insert into member_table(memberId, memberPassword, memberName, memberEmail, memberMobile, memberAddress)
         values (#{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile}, #{memberAddress})
     </insert>
-
     <select id="duplicateCheck" parameterType="String" resultType="String">
         select memberId from member_table where memberId=#{memberId}
+    </select>
+    <select id="login" parameterType="member" resultType="member">
+        select * from member_table where memberId=#{memberId} and memberPassword=#{memberPassword}
     </select>
 </mapper>
 

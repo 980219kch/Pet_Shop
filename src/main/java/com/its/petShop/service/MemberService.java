@@ -22,4 +22,9 @@ public class MemberService {
             return "yes";
         }
     }
+
+    public MemberDTO login(MemberDTO memberDTO) {
+        MemberDTO loginMember = memberRepository.login(memberDTO);
+        return loginMember;
+    }
 }
