@@ -51,5 +51,11 @@ public class MemberController {
             return "memberPages/login";
         }
     }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        System.out.println("로그아웃 성공");
+        return "main";
+    }
 
 }
