@@ -13,5 +13,6 @@
 <body>
     <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
     <a href="/member/update">내 정보 변경하기</a>
+    <a href="/member/delete?memberId=${sessionScope.loginMemberId}">회원탈퇴</a>
 </body>
 </html>

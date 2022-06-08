@@ -20,6 +20,9 @@
     <update id="update" parameterType="member">
         update member_table set memberId=#{memberId}, memberPassword=#{memberPassword}, memberName=#{memberName}, memberEmail=#{memberEmail}, memberMobile=#{memberMobile}, memberAddress=#{memberAddress}
     </update>
+    <delete id="delete" parameterType="String">
+        delete from member_table where memberId=#{memberId}
+    </delete>
 </mapper>
 
 

@@ -30,4 +30,8 @@ public class MemberRepository {
     public void update(MemberDTO memberDTO) {
         sql.update("Member.update", memberDTO);
     }
+
+    public void delete(String memberId) {
+        sql.delete("Member.delete", memberId);
+    }
 }

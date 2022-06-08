@@ -77,4 +77,17 @@ public class MemberController {
         return "memberPages/myPage";
     }
 
+    @GetMapping("/delete")
+    public String deleteForm(HttpSession session, Model model) {
+        String id = (String) session.getAttribute("loginMemberId");
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute("deleteMember", memberDTO);
+        return "memberPages/delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam("memberId") String memberId) {
+        memberService.delete(memberId);
+        return "redirect:/member/logout";
+    }
 }
