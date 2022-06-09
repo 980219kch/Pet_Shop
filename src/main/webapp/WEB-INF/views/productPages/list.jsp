@@ -37,7 +37,7 @@
                                 <img src="${pageContext.request.contextPath}/upload/${product.productFileName}" alt="">
                             </div>
                             <div class="productName">
-                                <a href="">${product.productName}</a>
+                                <a href="/product/detail?id=${product.id}">${product.productName}</a>
                             </div>
                         </li>
                     </c:forEach>
