@@ -4,5 +4,6 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.its.petShop.dto.MemberDTO" alias="member"></typeAlias>
+        <typeAlias type="com.its.petShop.dto.ProductDTO" alias="product"></typeAlias>
     </typeAliases>
 </configuration>
