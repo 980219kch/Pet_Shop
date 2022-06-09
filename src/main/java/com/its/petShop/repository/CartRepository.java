@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -17,5 +18,10 @@ public class CartRepository {
 
     public void save(CartDTO cartDTO) {
         sql.insert("Cart.save", cartDTO);
+    }
+
+
+    public List<CartDTO> findAll(String memberId) {
+        return sql.selectList("Cart.findAll", memberId);
     }
 }

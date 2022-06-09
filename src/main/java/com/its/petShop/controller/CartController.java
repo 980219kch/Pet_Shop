@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/cart")
@@ -26,4 +27,11 @@ public class CartController {
         return "productPages/list";
     }
 
+    @GetMapping("/save")
+    public String cart(HttpSession session, Model model) {
+        String memberId = (String) session.getAttribute("loginMemberId");
+        List<CartDTO> cartDTOList = cartService.findAll(memberId);
+        model.addAttribute("cartList", cartDTOList);
+        return "cartPages/cart";
+    }
 }

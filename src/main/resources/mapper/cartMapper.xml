@@ -8,6 +8,9 @@
         insert into cart_table(memberId, productId, productName, productPrice, productCount, productFileName)
         values (#{memberId}, #{productId}, #{productName}, #{productPrice}, #{productCount}, #{productFileName})
     </insert>
+    <select id="findAll" parameterType="String" resultType="cart">
+        select * from cart_table where memberId=#{memberId}
+    </select>
 </mapper>
 
 
