@@ -23,7 +23,7 @@ public class MemberController {
     }
 
     @PostMapping("/save")
-    public String save(MemberDTO memberDTO) {
+    public String save(@ModelAttribute MemberDTO memberDTO) {
         memberService.save(memberDTO);
         return "memberPages/login";
     }
@@ -40,7 +40,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(MemberDTO memberDTO, HttpSession session, Model model) {
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
         MemberDTO loginMember = memberService.login(memberDTO);
         if(loginMember != null) {
             System.out.println("로그인 성공");
@@ -73,7 +73,7 @@ public class MemberController {
     }
 
     @PostMapping("/update")
-    public String update(MemberDTO memberDTO) {
+    public String update(@ModelAttribute MemberDTO memberDTO) {
         memberService.update(memberDTO);
         return "memberPages/myPage";
     }

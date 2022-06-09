@@ -35,8 +35,12 @@
                     <tr>
                         <td colspan="2">
                             <form action="/cart/save" method="post">
-                                <input type="hidden" name="id" value="${product.id}">
-                                <select name="count">
+                                <input type="hidden" name="memberId" value="${sessionScope.loginMemberId}">
+                                <input type="hidden" name="productId" value="${product.id}">
+                                <input type="hidden" name="productName" value="${product.productName}">
+                                <input type="hidden" name="productPrice" value="${product.productPrice}">
+                                <input type="hidden" name="productFileName" value="${product.productFileName}">
+                                <select name="productCount">
                                     <c:forEach begin="1" end="10" var="i">
                                         <option value="${i}">${i}</option>
                                     </c:forEach>
