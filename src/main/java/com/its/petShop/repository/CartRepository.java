@@ -36,4 +36,8 @@ public class CartRepository {
     public void updateCart(CartDTO cartDTO) {
         sql.update("Cart.sumCart", cartDTO);
     }
+
+    public void delete(Long id) {
+        sql.delete("Cart.delete", id);
+    }
 }

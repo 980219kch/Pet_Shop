@@ -34,15 +34,20 @@
             </tr>
             <c:forEach items="${cartList}" var="cart">
                 <tr>
-                    <td style="width: 200px"><img src="${pageContext.request.contextPath}/upload/${cart.productFileName}" alt="" width="100" height="100"></td>
+                    <td style="width: 170px"><img src="${pageContext.request.contextPath}/upload/${cart.productFileName}" alt="" width="100" height="100"></td>
                     <td>${cart.productName}</td>
                     <td>${cart.productPrice}</td>
                     <td>${cart.productCount}</td>
-                    <td><input type="button" value="삭제"></td>
+                    <td><input type="button" value="삭제" onclick="deleteCart()"></td>
+                    <script>
+                        const deleteCart = () => {
+                            location.href = "/cart/delete?id=${cart.id}"
+                        }
+                    </script>
                 </tr>
             </c:forEach>
         </form>
     </table>
-
 </body>
+
 </html>

@@ -32,11 +32,18 @@ public class CartController {
         return "redirect:/product/findAll";
     }
 
-    @GetMapping("/save")
-    public String cart(HttpSession session, Model model) {
+    @GetMapping("/findAll")
+    public String findAll(HttpSession session, Model model) {
         String memberId = (String) session.getAttribute("loginMemberId");
         List<CartDTO> cartDTOList = cartService.findAll(memberId);
         model.addAttribute("cartList", cartDTOList);
         return "cartPages/cart";
     }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        cartService.delete(id);
+        return "redirect:/cart/findAll";
+    }
+
 }

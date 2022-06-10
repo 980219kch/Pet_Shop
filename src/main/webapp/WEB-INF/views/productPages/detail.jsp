@@ -13,13 +13,13 @@
     <title>Title</title>
 </head>
 <body>
-    <table>
+    <table style="padding-top: 80px; height: 300px; width: 60%">
         <tr>
-            <td>
+            <td style="width: 70%; padding-left: 40px;" >
                 <img src="${pageContext.request.contextPath}/upload/${product.productFileName}" alt="">
             </td>
             <td>
-                <table style="height: 300px; width: 400px;">
+                <table style="padding-right: 40px;">
                     <tr>
                         <td>상품명</td>
                         <td>${product.productName}</td>

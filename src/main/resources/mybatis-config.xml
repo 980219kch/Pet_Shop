@@ -6,5 +6,6 @@
         <typeAlias type="com.its.petShop.dto.MemberDTO" alias="member"></typeAlias>
         <typeAlias type="com.its.petShop.dto.ProductDTO" alias="product"></typeAlias>
         <typeAlias type="com.its.petShop.dto.CartDTO" alias="cart"></typeAlias>
+        <typeAlias type="com.its.petShop.dto.ReviewDTO" alias="review"></typeAlias>
     </typeAliases>
 </configuration>

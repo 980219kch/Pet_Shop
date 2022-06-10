@@ -33,4 +33,8 @@ public class CartService {
     public void updateCart(CartDTO cartDTO) {
         cartRepository.updateCart(cartDTO);
     }
+
+    public void delete(Long id) {
+        cartRepository.delete(id);
+    }
 }

@@ -17,6 +17,9 @@
     <select id="sumCart" parameterType="cart">
         update cart_table set productCount = productCount + #{productCount} where memberId=#{memberId} and productId=#{productId}
     </select>
+    <delete id="delete" parameterType="Long">
+        delete from cart_table where id=#{id}
+    </delete>
 </mapper>
 
 
