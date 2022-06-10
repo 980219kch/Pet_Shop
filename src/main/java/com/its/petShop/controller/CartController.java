@@ -23,8 +23,13 @@ public class CartController {
         System.out.println("cartDTO = " + cartDTO);
         String memberId = (String) session.getAttribute("loginMemberId");
         cartDTO.setMemberId(memberId);
-        cartService.save(cartDTO);
-        return "productPages/list";
+        int productCount = cartService.countCart(cartDTO.getProductId(), memberId);
+        if(productCount == 0) {
+            cartService.save(cartDTO);
+        } else {
+            cartService.updateCart(cartDTO);
+        }
+        return "redirect:/product/findAll";
     }
 
     @GetMapping("/save")

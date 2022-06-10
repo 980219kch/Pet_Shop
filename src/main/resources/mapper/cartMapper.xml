@@ -11,6 +11,12 @@
     <select id="findAll" parameterType="String" resultType="cart">
         select * from cart_table where memberId=#{memberId}
     </select>
+    <select id="countCart" resultType="int">
+        select count(*) from cart_table where memberId=#{memberId} and productId=#{productId}
+    </select>
+    <select id="sumCart" parameterType="cart">
+        update cart_table set productCount = productCount + #{productCount} where memberId=#{memberId} and productId=#{productId}
+    </select>
 </mapper>
 
 

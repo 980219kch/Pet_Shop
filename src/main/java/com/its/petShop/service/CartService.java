@@ -25,4 +25,12 @@ public class CartService {
     public List<CartDTO> findAll(String memberId) {
         return cartRepository.findAll(memberId);
     }
+
+    public int countCart(Long productId, String memberId) {
+        return cartRepository.countCart(productId, memberId);
+    }
+
+    public void updateCart(CartDTO cartDTO) {
+        cartRepository.updateCart(cartDTO);
+    }
 }
