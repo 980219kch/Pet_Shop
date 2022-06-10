@@ -46,7 +46,8 @@
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="/product/findAll" class="nav-link px-2 link-dark">상품</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">고객센터</a></li>
+                <li><a href="/board/findAll" class="nav-link px-2 link-dark">고객센터</a></li>
+                <li><a href="/board/save" class="nav-link px-2 link-dark">문의하기</a></li>
                 <c:choose>
                     <c:when test="${not empty sessionScope.loginMemberId}">
                         <c:choose>

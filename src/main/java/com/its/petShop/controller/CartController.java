@@ -36,6 +36,13 @@ public class CartController {
     public String findAll(HttpSession session, Model model) {
         String memberId = (String) session.getAttribute("loginMemberId");
         List<CartDTO> cartDTOList = cartService.findAll(memberId);
+        if(!cartDTOList.isEmpty()) {
+            int totalPrice = 0;
+            for(CartDTO c: cartDTOList) {
+                totalPrice += c.getProductPrice() * c.getProductCount();
+            }
+            model.addAttribute("totalPrice", totalPrice);
+        }
         model.addAttribute("cartList", cartDTOList);
         return "cartPages/cart";
     }

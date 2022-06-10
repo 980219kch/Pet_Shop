@@ -48,6 +48,9 @@
             </c:forEach>
         </form>
     </table>
+    <form action="" style="float: right; padding-right: 30px">
+        총 결제금액: ${totalPrice}
+        <input type="button" value="구매">
+    </form>
 </body>
-
 </html>
