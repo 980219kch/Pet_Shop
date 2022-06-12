@@ -8,6 +8,18 @@
         insert into board_table(memberId, boardTitle, boardContents, boardCreatedDate)
         values (#{memberId}, #{boardTitle}, #{boardContents}, now())
     </insert>
+
+    <select id="pagingList" parameterType="java.util.HashMap" resultType="board">
+        select * from board_table order by id desc limit #{start}, #{limit}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(id) from board_table
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="board">
+        select * from board_table where id=#{id}
+    </select>
 </mapper>
 
 
