@@ -51,4 +51,5 @@ public class ProductController {
         return "productPages/detail";
     }
 
+
 }

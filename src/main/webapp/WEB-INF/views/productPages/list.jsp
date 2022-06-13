@@ -20,6 +20,9 @@
         section#content div.productName {
             padding: 10px 0; text-align: center;
         }
+        section#content div.productPrice {
+            text-align: center;
+        }
         section#container {
             margin-top: 50px;
             width: 550px;
@@ -30,6 +33,15 @@
 </head>
 <body>
     <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+
+    <table style="width: 150px; margin-left: auto; margin-right: auto">
+        <tr>
+            <td><a href="" onclick="findAll()">전체</a></td>
+            <td><a href="">사료</a></td>
+            <td><a href="">간식</a></td>
+            <td><a href="">용품</a></td>
+        </tr>
+    </table>
     <section id="container">
         <div id="container_box">
             <section id="content">
@@ -41,6 +53,9 @@
                             </div>
                             <div class="productName">
                                 <a href="/product/detail?id=${product.id}">${product.productName}</a>
+                            </div>
+                            <div class="productPrice">
+                                <div>${product.productPrice}원</div>
                             </div>
                         </li>
                     </c:forEach>.
@@ -92,4 +107,11 @@
         </ul>
     </div>
 </body>
+<script>
+    const findAll = () => {
+        $.ajax({
+           data:
+        });
+    }
+</script>
 </html>

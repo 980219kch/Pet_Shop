@@ -52,4 +52,5 @@ public class BoardController {
         model.addAttribute("replyList", replyDTOList);
         return "boardPages/detail";
     }
+
 }

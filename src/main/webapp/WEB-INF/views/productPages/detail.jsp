@@ -13,9 +13,9 @@
     <title>Title</title>
 </head>
 <body>
-    <table style="padding-top: 80px; height: 300px; width: 60%">
+    <table style="margin-top: 80px; height: 300px; width: 60%; margin-left: auto; margin-right: auto">
         <tr>
-            <td style="width: 70%; padding-left: 40px;" >
+            <td style="width: 50%;">
                 <img src="${pageContext.request.contextPath}/upload/${product.productFileName}" alt="">
             </td>
             <td>

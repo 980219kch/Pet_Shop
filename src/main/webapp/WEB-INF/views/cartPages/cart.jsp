@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"></script>
     <style>
         table {
             width: 100%;
@@ -48,9 +50,37 @@
             </c:forEach>
         </form>
     </table>
-    <form action="" style="float: right; padding-right: 30px">
+    <div style="float: right;">
         총 결제금액: ${totalPrice}
-        <input type="button" value="구매">
-    </form>
+        <button onclick="pay()">결제하기</button>
+    </div>
 </body>
+<script>
+    const pay = () => {
+        const IMP = window.IMP;
+        IMP.init("imp73350321");
+        IMP.request_pay({
+            pg: "kakaopay",
+            pay_method: "card",
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: '결제',
+            amount: `${totalPrice}`,
+            buyer_email: 'kimch8063@naver.com',
+            buyer_name: '${sessionScope.loginMemberId}',
+            buyer_tel: '010-6605-8063',
+            buyer_addr: '인천광역시 연수구 송도동',
+            buyer_postcode: '123-456'
+        }, function (rsp) {
+            if(rsp.success) {
+                const msg = "결제가 완료되었습니다.";
+                alert(msg);
+                location.href = "/";
+            } else {
+                let msg = "결제에 실패하였습니다.";
+                msg += rsp.error_msg;
+                alert(msg);
+            }
+        });
+    }
+</script>
 </html>

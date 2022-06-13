@@ -30,4 +30,5 @@ public class ProductRepository {
     public int productCount() {
         return sql.selectOne("Product.count");
     }
+
 }
