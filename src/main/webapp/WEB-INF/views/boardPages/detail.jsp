@@ -35,25 +35,26 @@
                 </div>
                 <button onclick="replyWrite()" class="btn btn-primary">댓글작성</button>
             </div>
-
-            <div id="reply-list">
-                <table class="table">
-                    <tr>
-                        <th>작성자</th>
-                        <th>내용</th>
-                        <th>작성시간</th>
-                    </tr>
-                    <c:forEach items="${replyList}" var="reply">
-                        <tr>
-                            <td>${reply.replyWriter}</td>
-                            <td>${reply.replytContents}</td>
-                            <td><fmt:formatDate value="${reply.replyCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
         </div>
     </c:if>
+    <div class="container mt-5">
+        <div id="reply-list">
+            <table class="table">
+                <tr>
+                    <th>작성자</th>
+                    <th>내용</th>
+                    <th>작성시간</th>
+                </tr>
+                <c:forEach items="${replyList}" var="reply">
+                    <tr>
+                        <td>${reply.replyWriter}</td>
+                        <td>${reply.replyContents}</td>
+                        <td><fmt:formatDate value="${reply.replyCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+    </div>
 </body>
 <script>
     const replyWrite = () => {

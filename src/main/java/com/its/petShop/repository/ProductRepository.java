@@ -17,13 +17,17 @@ public class ProductRepository {
     public void save(ProductDTO productDTO) {
         sql.insert("Product.save", productDTO);
     }
-
-
-    public List<ProductDTO> findAll() {
-        return sql.selectList("Product.findAll");
-    }
+    
 
     public ProductDTO findById(Long id) {
         return sql.selectOne("Product.findById", id);
+    }
+
+    public List<ProductDTO> pagingList(Map<String, Integer> pagingParam) {
+        return sql.selectList("Product.pagingList", pagingParam);
+    }
+
+    public int productCount() {
+        return sql.selectOne("Product.count");
     }
 }

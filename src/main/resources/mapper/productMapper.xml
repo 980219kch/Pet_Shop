@@ -8,8 +8,11 @@
         insert into product_table(productName, productKind, productPrice, productCount, productDetail, productFileName)
         values (#{productName}, #{productKind}, #{productPrice}, #{productCount}, #{productDetail}, #{productFileName})
     </insert>
-    <select id="findAll" resultType="product">
-        select * from product_table
+    <select id="pagingList" parameterType="java.util.HashMap" resultType="product">
+        select * from product_table order by id desc limit #{start}, #{limit}
+    </select>
+    <select id="count" resultType="int">
+        select count(id) from product_table
     </select>
     <select id="findById" parameterType="Long" resultType="product">
         select * from product_table where id=#{id}

@@ -1,5 +1,6 @@
 package com.its.petShop.controller;
 
+import com.its.petShop.dto.PageDTO;
 import com.its.petShop.dto.ProductDTO;
 import com.its.petShop.dto.ReviewDTO;
 import com.its.petShop.service.ProductService;
@@ -33,16 +34,20 @@ public class ProductController {
     }
 
     @GetMapping("/findAll")
-    public String findAll(Model model) {
-        List<ProductDTO> productDTOList = productService.findAll();
+    public String findAll(@RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+        List<ProductDTO> productDTOList = productService.pagingList(page);
+        PageDTO paging = productService.paging(page);
         model.addAttribute("productList", productDTOList);
+        model.addAttribute("paging", paging);
         return "productPages/list";
     }
 
     @GetMapping("/detail")
-    public String detail(@RequestParam("id") Long id, Model model) {
+    public String detail(@RequestParam("id") Long id, Model model,
+                         @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ProductDTO productDTO = productService.findById(id);
         model.addAttribute("product", productDTO);
+        model.addAttribute("page", page);
         return "productPages/detail";
     }
 
