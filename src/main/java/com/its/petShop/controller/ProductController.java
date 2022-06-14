@@ -60,23 +60,14 @@ public class ProductController {
         return "productPages/feed-list";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/priceAsc")
-    public String priceAsc(Model model) {
-        List<ProductDTO> productDTOList = productService.priceAsc();
-        model.addAttribute("productList", productDTOList);
+    @GetMapping("/search")
+    public String search(@RequestParam("text") String search,
+                         @RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+        List<ProductDTO> searchList = productService.search(search, page);
+        PageDTO paging = productService.pagingSearch(search, page);
+        model.addAttribute("productList", searchList);
+        model.addAttribute("paging", paging);
         return "productPages/list";
     }
-
 
 }

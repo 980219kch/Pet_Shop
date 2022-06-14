@@ -22,11 +22,11 @@
     내용: ${board.boardContents} <br>
     작성일자: ${board.boardCreatedDate} <br>
 
-    <c:if test="${sessionScope.loginMemberId eq 'admin' or sessionScope.loginMemberId eq board.memberId}">
+    <c:if test="${sessionScope.loginMemberId eq 'admin'}">
         <div class="container mt-5">
             <div id="reply-write" class="input-group mb-3">
                 <div class="form-floating">
-                    <input type="text" id="replyWriter" class="form-control" value="${sessionScope.loginMemberId}" readonly>
+                    <input type="text" id="replyWriter" class="form-control" value="관리자" readonly>
                     <label for="replyWriter">작성자</label>
                 </div>
                 <div class="form-floating">
@@ -47,7 +47,7 @@
                 </tr>
                 <c:forEach items="${replyList}" var="reply">
                     <tr>
-                        <td>${reply.replyWriter}</td>
+                        <td>관리자</td>
                         <td>${reply.replyContents}</td>
                         <td><fmt:formatDate value="${reply.replyCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
                     </tr>

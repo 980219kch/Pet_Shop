@@ -23,8 +23,11 @@
     <select id="count1" parameterType="String" resultType="int">
         select count(id) from product_table where productKind=#{productKind}
     </select>
-    <select id="priceAsc" resultType="product">
-        select * from product_table order by productPrice asc
+    <select id="search" parameterType="java.util.HashMap" resultType="product">
+        select * from product_table where productName like concat('%', #{search}, '%') order by id desc limit #{start}, #{limit}
+    </select>
+    <select id="searchCount" parameterType="String" resultType="int">
+        select count(id) from product_table where productName like concat('%', #{search}, '%')
     </select>
 </mapper>
 

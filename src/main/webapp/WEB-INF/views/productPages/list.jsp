@@ -33,7 +33,12 @@
 </head>
 <body>
     <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
-
+    <div class="container mt-3">
+        <form action="/product/search" method="get">
+            <input type="text" name="text" placeholder="검색어입력..">
+            <input type="submit" value="검색">
+        </form>
+    </div>
     <div id="product_order" style="float: right">
         <a href="/product/priceAsc">낮은가격순</a>&nbsp;|&nbsp;
         <a href="">높은가격순</a>&nbsp;|&nbsp;

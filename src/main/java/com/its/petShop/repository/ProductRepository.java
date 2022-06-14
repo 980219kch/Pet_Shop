@@ -31,15 +31,19 @@ public class ProductRepository {
         return sql.selectOne("Product.count");
     }
 
-    public List<ProductDTO> priceAsc() {
-        return sql.selectList("Product.priceAsc");
-    }
-
     public List<ProductDTO> find(Map<String, Object> pagingParam) {
         return sql.selectList("Product.find", pagingParam);
     }
 
     public int productCount1(String productKind) {
         return sql.selectOne("Product.count1", productKind);
+    }
+
+    public List<ProductDTO> search(Map<String, Object> pagingParam) {
+        return sql.selectList("Product.search", pagingParam);
+    }
+
+    public int searchCount(String search) {
+        return sql.selectOne("Product.searchCount", search);
     }
 }
