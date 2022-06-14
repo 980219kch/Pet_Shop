@@ -64,4 +64,32 @@ public class ProductService {
         return paging;
     }
 
+    public List<ProductDTO> priceAsc() {
+        return productRepository.priceAsc();
+    }
+
+    public List<ProductDTO> find(String productKind, int page) {
+        int pagingStart = (page-1) * PAGE_LIMIT;
+        Map<String, Object> pagingParam = new HashMap<>();
+        pagingParam.put("start", pagingStart);
+        pagingParam.put("limit", PAGE_LIMIT);
+        pagingParam.put("productKind", productKind);
+        List<ProductDTO> pagingList = productRepository.find(pagingParam);
+        return pagingList;
+    }
+
+    public PageDTO paging1(String productKind, int page) {
+        int productCount = productRepository.productCount1(productKind);
+        int maxPage = (int)(Math.ceil((double)productCount / PAGE_LIMIT));
+        int startPage = (((int)(Math.ceil((double)page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
+        int endPage = startPage + BLOCK_LIMIT - 1;
+        if(endPage > maxPage)
+            endPage = maxPage;
+        PageDTO paging = new PageDTO();
+        paging.setPage(page);
+        paging.setStartPage(startPage);
+        paging.setEndPage(endPage);
+        paging.setMaxPage(maxPage);
+        return paging;
+    }
 }

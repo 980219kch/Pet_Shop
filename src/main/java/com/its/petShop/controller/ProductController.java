@@ -2,7 +2,6 @@ package com.its.petShop.controller;
 
 import com.its.petShop.dto.PageDTO;
 import com.its.petShop.dto.ProductDTO;
-import com.its.petShop.dto.ReviewDTO;
 import com.its.petShop.service.ProductService;
 import com.its.petShop.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +48,34 @@ public class ProductController {
         model.addAttribute("product", productDTO);
         model.addAttribute("page", page);
         return "productPages/detail";
+    }
+
+    @GetMapping("/find")
+    public String find(@RequestParam("productKind") String productKind,
+                       @RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
+        List<ProductDTO> productDTOList = productService.find(productKind, page);
+        PageDTO paging = productService.paging1(productKind, page);
+        model.addAttribute("productList", productDTOList);
+        model.addAttribute("paging", paging);
+        return "productPages/feed-list";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/priceAsc")
+    public String priceAsc(Model model) {
+        List<ProductDTO> productDTOList = productService.priceAsc();
+        model.addAttribute("productList", productDTOList);
+        return "productPages/list";
     }
 
 

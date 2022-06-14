@@ -17,6 +17,15 @@
     <select id="findById" parameterType="Long" resultType="product">
         select * from product_table where id=#{id}
     </select>
+    <select id="find" parameterType="java.util.HashMap" resultType="product">
+        select * from product_table where productKind=#{productKind} order by id desc limit #{start}, #{limit}
+    </select>
+    <select id="count1" parameterType="String" resultType="int">
+        select count(id) from product_table where productKind=#{productKind}
+    </select>
+    <select id="priceAsc" resultType="product">
+        select * from product_table order by productPrice asc
+    </select>
 </mapper>
 
 

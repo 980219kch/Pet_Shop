@@ -12,6 +12,42 @@
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/css/headers.css">
+    <style>
+        .dropBtn {
+            background-color: white;
+            color: black;
+            padding-top: 8px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+    </style>
 </head>
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -45,7 +81,15 @@
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/" class="nav-link px-2 link-dark">Home</a></li>
-                <li><a href="/product/findAll" class="nav-link px-2 link-dark">상품</a></li>
+                <div class="dropdown">
+                    <button class="dropBtn">상품</button>
+                    <div class="dropdown-content">
+                        <a href="/product/findAll">전체</a>
+                        <a href="/product/find?productKind=사료">사료</a>
+                        <a href="/product/find?productKind=간식">간식</a>
+                        <a href="/product/find?productKind=용품">용품</a>
+                    </div>
+                </div>
                 <li><a href="/board/paging" class="nav-link px-2 link-dark">고객센터</a></li>
                 <li><a href="/board/save" class="nav-link px-2 link-dark">문의하기</a></li>
                 <c:choose>
