@@ -67,7 +67,7 @@ public class ProductController {
         PageDTO paging = productService.pagingSearch(search, page);
         model.addAttribute("productList", searchList);
         model.addAttribute("paging", paging);
-        return "productPages/list";
+        return "productPages/searchList";
     }
 
 }

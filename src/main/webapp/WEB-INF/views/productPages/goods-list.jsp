@@ -34,11 +34,6 @@
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 
-<div id="product_order" style="float: right">
-    <a href="/product/priceAsc">낮은가격순</a>&nbsp;|&nbsp;
-    <a href="">높은가격순</a>&nbsp;|&nbsp;
-    <a href="">리뷰많은순</a>
-</div>
 <section id="container">
     <div id="container_box">
         <section id="content">

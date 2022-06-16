@@ -13,6 +13,7 @@
     <title>Title</title>
 </head>
 <body>
+    <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
     <table style="margin-top: 80px; height: 300px; width: 60%; margin-left: auto; margin-right: auto">
         <tr>
             <td style="width: 50%;">
@@ -53,5 +54,7 @@
             </td>
         </tr>
     </table>
+
+
 </body>
 </html>

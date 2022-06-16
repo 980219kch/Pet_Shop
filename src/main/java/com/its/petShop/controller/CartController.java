@@ -1,8 +1,10 @@
 package com.its.petShop.controller;
 
 import com.its.petShop.dto.CartDTO;
+import com.its.petShop.dto.MemberDTO;
 import com.its.petShop.dto.ProductDTO;
 import com.its.petShop.service.CartService;
+import com.its.petShop.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,9 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private MemberService memberService;
 
     @PostMapping("/save")
     public String save(@ModelAttribute CartDTO cartDTO, HttpSession session) {
@@ -36,14 +41,9 @@ public class CartController {
     public String findAll(HttpSession session, Model model) {
         String memberId = (String) session.getAttribute("loginMemberId");
         List<CartDTO> cartDTOList = cartService.findAll(memberId);
-        if(!cartDTOList.isEmpty()) {
-            int totalPrice = 0;
-            for(CartDTO c: cartDTOList) {
-                totalPrice += c.getProductPrice() * c.getProductCount();
-            }
-            model.addAttribute("totalPrice", totalPrice);
-        }
+        MemberDTO memberDTO = memberService.findById(memberId);
         model.addAttribute("cartList", cartDTOList);
+        model.addAttribute("member", memberDTO);
         return "cartPages/cart";
     }
 
@@ -52,5 +52,7 @@ public class CartController {
         cartService.delete(id);
         return "redirect:/cart/findAll";
     }
+
+
 
 }

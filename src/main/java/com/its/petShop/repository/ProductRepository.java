@@ -46,4 +46,5 @@ public class ProductRepository {
     public int searchCount(String search) {
         return sql.selectOne("Product.searchCount", search);
     }
+
 }

@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <style>
         section#content ul li {
             display: inline-block; margin: 10px;
@@ -41,8 +42,8 @@
     </div>
     <div id="product_order" style="float: right">
         <a href="/product/priceAsc">낮은가격순</a>&nbsp;|&nbsp;
-        <a href="">높은가격순</a>&nbsp;|&nbsp;
-        <a href="">리뷰많은순</a>
+        <a href="/product/priceDesc">높은가격순</a>&nbsp;|&nbsp;
+        <a href="/product/reviewAsc">리뷰많은순</a>
     </div>
     <section id="container">
         <div id="container_box">
@@ -110,5 +111,6 @@
     </div>
 </body>
 <script>
+
 </script>
 </html>
