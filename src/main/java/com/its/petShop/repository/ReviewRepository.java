@@ -14,4 +14,11 @@ public class ReviewRepository {
     private SqlSessionTemplate sql;
 
 
+    public void save(ReviewDTO reviewDTO) {
+        sql.insert("Review.save", reviewDTO);
+    }
+
+    public List<ReviewDTO> findAll(Long productId) {
+        return sql.selectList("Review.findAll", productId);
+    }
 }

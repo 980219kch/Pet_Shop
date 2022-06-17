@@ -14,6 +14,9 @@
 </head>
 <body>
     <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+    <c:if test="${not empty sessionScope.loginMemberId}">
+        <button onclick="boardSave()">문의하기</button>
+    </c:if>
     <table class="table">
         <tr>
             <th>작성자</th>
@@ -73,10 +76,8 @@
     </div>
 </body>
 <script>
-    const reply = () => {
-        const reply = document.getElementById("reply").value;
-        let replyContents = document.getElementById("replyContents");
-        replyContents = reply;
+    const boardSave = () => {
+        location.href = "/board/save";
     }
 </script>
 </html>

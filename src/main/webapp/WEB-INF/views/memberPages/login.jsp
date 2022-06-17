@@ -9,13 +9,26 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="/resources/css/signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
-<body>
-    <h2>로그인</h2>
+<body class="text-center">
+<main class="form-signin">
     <form action="/member/login" method="post">
-        <input type="text" name="memberId"> <br>
-        <input type="text" name="memberPassword"> <br>
-        <input type="submit" value="로그인">
+        <h1 class="h3 mb-3 fw-normal">Pet Shop</h1> <br>
+
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="memberId">
+            <label for="floatingInput">아이디</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingPassword" name="memberPassword">
+            <label for="floatingPassword">비밀번호</label>
+        </div><br>
+
+        <input type="submit" class="btn btn-primary" value="로그인">
     </form>
+</main>
+
 </body>
 </html>

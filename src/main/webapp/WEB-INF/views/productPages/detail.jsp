@@ -11,6 +11,9 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </head>
 <body>
     <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
@@ -55,6 +58,74 @@
         </tr>
     </table>
 
-
+    <c:if test="${not empty sessionScope.loginMemberId}">
+        <div class="container mt-5">
+            <h2>리뷰</h2>
+            <div id="review-write" class="input-group mb-3">
+                <div class="form-floating">
+                    <input type="text" id="reviewWriter" class="form-control" value="${sessionScope.loginMemberId}" readonly>
+                    <label for="reviewWriter">작성자</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" id="reviewContents" class="form-control" placeholder="내용">
+                    <label for="reviewContents">내용</label>
+                </div>
+                <button onclick="reviewWrite()" class="btn btn-primary">리뷰작성</button>
+            </div>
+    </c:if>
+            <div id="review-list">
+                <table class="table">
+                    <tr>
+                        <th>작성자</th>
+                        <th>내용</th>
+                        <th>작성시간</th>
+                    </tr>
+                    <c:forEach items="${reviewList}" var="review">
+                        <tr>
+                            <td>${review.reviewWriter}</td>
+                            <td>${review.reviewContents}</td>
+                            <td><fmt:formatDate value="${review.reviewCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
 </body>
+<script>
+    const reviewWrite = () => {
+        const productId = `${product.id}`;
+        const reviewWriter = document.getElementById("reviewWriter").value;
+        const reviewContents = document.getElementById("reviewContents").value;
+        $.ajax({
+            type: "post",
+            url: "/review/save",
+            data: {
+                "productId": productId,
+                "reviewWriter": reviewWriter,
+                "reviewContents": reviewContents
+            },
+            dataType: "json",
+            success: function (result) {
+                console.log(result)
+                let output = "<table class='table'>";
+                output += "<tr><th>작성자</th>";
+                output += "<th>내용</th>";
+                output += "<th>작성시간</th></tr>";
+                for(let i in result){
+                    output += "<tr>";
+                    output += "<td>"+result[i].reviewWriter+"</td>";
+                    output += "<td>"+result[i].reviewContents+"</td>";
+                    output += "<td>"+moment(result[i].reviewCreatedDate).format("YYYY-MM-DD HH:mm:ss")+"</td>";
+                    output += "</tr>";
+                }
+                output += "</table>";
+                document.getElementById('review-list').innerHTML = output;
+                document.getElementById('reviewContents').value='';
+            }, error: function () {
+                alert("오류");
+            }
+
+        });
+    }
+</script>
 </html>

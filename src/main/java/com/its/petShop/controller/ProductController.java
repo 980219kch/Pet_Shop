@@ -2,6 +2,7 @@ package com.its.petShop.controller;
 
 import com.its.petShop.dto.PageDTO;
 import com.its.petShop.dto.ProductDTO;
+import com.its.petShop.dto.ReviewDTO;
 import com.its.petShop.service.ProductService;
 import com.its.petShop.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class ProductController {
     @PostMapping("/save")
     public String save(@ModelAttribute ProductDTO productDTO) throws IOException {
         productService.save(productDTO);
-        return "/adminPages/admin";
+        return "redirect:/product/findAll";
     }
 
     @GetMapping("/findAll")
@@ -47,6 +48,8 @@ public class ProductController {
         ProductDTO productDTO = productService.findById(id);
         model.addAttribute("product", productDTO);
         model.addAttribute("page", page);
+        List<ReviewDTO> reviewDTOList = reviewService.findAll(id);
+        model.addAttribute("reviewList", reviewDTOList);
         return "productPages/detail";
     }
 
@@ -57,7 +60,20 @@ public class ProductController {
         PageDTO paging = productService.paging1(productKind, page);
         model.addAttribute("productList", productDTOList);
         model.addAttribute("paging", paging);
-        return "productPages/feed-list";
+        return "productPages/category-list";
+    }
+
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("id") Long id, Model model) {
+        ProductDTO productDTO = productService.findById(id);
+        model.addAttribute("updateProduct", productDTO);
+        return "productPages/update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute ProductDTO productDTO) {
+        productService.update(productDTO);
+        return "redirect:/product/findAll";
     }
 
     @GetMapping("/search")
@@ -67,7 +83,12 @@ public class ProductController {
         PageDTO paging = productService.pagingSearch(search, page);
         model.addAttribute("productList", searchList);
         model.addAttribute("paging", paging);
-        return "productPages/searchList";
+        return "productPages/searchList"   ;
     }
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        productService.delete(id);
+        return "redirect:/product/findAll";
+    }
 }

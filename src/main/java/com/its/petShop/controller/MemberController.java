@@ -52,6 +52,14 @@ public class MemberController {
             return "memberPages/login";
         }
     }
+
+    @GetMapping("/findAll")
+    public String findAll(Model model) {
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        return "adminPages/memberList";
+    }
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
@@ -97,10 +105,4 @@ public class MemberController {
         return "adminPages/admin";
     }
 
-    @GetMapping("/findAll")
-    public String findAll(Model model) {
-        List<MemberDTO> memberDTOList = memberService.findAll();
-        model.addAttribute("memberList", memberDTOList);
-        return "adminPages/memberList";
-    }
 }

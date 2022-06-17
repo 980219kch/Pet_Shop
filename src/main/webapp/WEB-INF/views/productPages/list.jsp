@@ -40,11 +40,7 @@
             <input type="submit" value="검색">
         </form>
     </div>
-    <div id="product_order" style="float: right">
-        <a href="/product/priceAsc">낮은가격순</a>&nbsp;|&nbsp;
-        <a href="/product/priceDesc">높은가격순</a>&nbsp;|&nbsp;
-        <a href="/product/reviewAsc">리뷰많은순</a>
-    </div>
+
     <section id="container">
         <div id="container_box">
             <section id="content">
@@ -52,14 +48,28 @@
                     <c:forEach items="${productList}" var="product">
                         <li>
                             <div class="productImg">
-                                <a href="/product/detail?id=${product.id}"><img src="${pageContext.request.contextPath}/upload/${product.productFileName}" alt=""></a>
+                                <a href="/product/detail?page=${paging.page}&id=${product.id}"><img src="${pageContext.request.contextPath}/upload/${product.productFileName}" alt=""></a>
                             </div>
                             <div class="productName">
-                                <a href="/product/detail?id=${product.id}">${product.productName}</a>
+                                <a href="/product/detail?page=${paging.page}&id=${product.id}">${product.productName}</a>
                             </div>
                             <div class="productPrice">
                                 <div>${product.productPrice}원</div>
                             </div>
+                            <c:if test="${sessionScope.loginMemberId eq 'admin'}">
+                                <div class="productButton">
+                                    <button onclick="updateProduct()">수정</button>&nbsp;&nbsp;&nbsp;
+                                    <button onclick="deleteProduct()">삭제</button>
+                                </div>
+                                <script>
+                                    const updateProduct = () => {
+                                        location.href = "/product/update?id=${product.id}";
+                                    }
+                                    const deleteProduct = () => {
+                                        location.href = "/product/delete?id=${product.id}";
+                                    }
+                                </script>
+                            </c:if>
                         </li>
                     </c:forEach>.
                 </ul>
@@ -110,7 +120,4 @@
         </ul>
     </div>
 </body>
-<script>
-
-</script>
 </html>

@@ -9,7 +9,7 @@
         values (#{boardId}, #{replyWriter}, #{replyContents}, now())
     </insert>
     <select id="findAll" parameterType="Long" resultType="reply">
-        select * from reply_table where boardId=#{boardId}
+        select * from reply_table where boardId=#{boardId} order by id desc
     </select>
 </mapper>
 

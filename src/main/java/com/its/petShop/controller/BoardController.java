@@ -30,7 +30,7 @@ public class BoardController {
     @PostMapping("/save")
     public String save(@ModelAttribute BoardDTO boardDTO) {
         boardService.save(boardDTO);
-        return "redirect:/board/findAll";
+        return "redirect:/board/paging";
     }
 
     @GetMapping("/paging")

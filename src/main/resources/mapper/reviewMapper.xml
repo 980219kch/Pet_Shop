@@ -4,8 +4,13 @@
 
 
 <mapper namespace="Review">
+    <insert id="save" parameterType="review">
+        insert into review_table (productId, reviewWriter, reviewContents, reviewCreatedDate)
+        values (#{productId}, #{reviewWriter}, #{reviewContents}, now())
+    </insert>
+
     <select id="findAll" parameterType="Long" resultType="review">
-        select * from review_table where productId=#{productId}
+        select * from review_table where productId=#{productId} order by id desc
     </select>
 </mapper>
 

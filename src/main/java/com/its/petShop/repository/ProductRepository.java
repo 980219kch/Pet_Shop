@@ -47,4 +47,11 @@ public class ProductRepository {
         return sql.selectOne("Product.searchCount", search);
     }
 
+    public void delete(Long id) {
+        sql.delete("Product.delete", id);
+    }
+
+    public void update(ProductDTO productDTO) {
+        sql.update("Product.update", productDTO);
+    }
 }

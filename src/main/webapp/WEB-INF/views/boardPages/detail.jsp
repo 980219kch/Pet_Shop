@@ -26,7 +26,7 @@
         <div class="container mt-5">
             <div id="reply-write" class="input-group mb-3">
                 <div class="form-floating">
-                    <input type="text" id="replyWriter" class="form-control" value="관리자" readonly>
+                    <input type="text" id="replyWriter" class="form-control" value=${sessionScope.loginMemberId} readonly>
                     <label for="replyWriter">작성자</label>
                 </div>
                 <div class="form-floating">
@@ -35,26 +35,25 @@
                 </div>
                 <button onclick="replyWrite()" class="btn btn-primary">댓글작성</button>
             </div>
-        </div>
     </c:if>
-    <div class="container mt-5">
-        <div id="reply-list">
-            <table class="table">
-                <tr>
-                    <th>작성자</th>
-                    <th>내용</th>
-                    <th>작성시간</th>
-                </tr>
-                <c:forEach items="${replyList}" var="reply">
+
+            <div id="reply-list">
+                <table class="table">
                     <tr>
-                        <td>관리자</td>
-                        <td>${reply.replyContents}</td>
-                        <td><fmt:formatDate value="${reply.replyCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                        <th>작성자</th>
+                        <th>내용</th>
+                        <th>작성시간</th>
                     </tr>
-                </c:forEach>
-            </table>
+                    <c:forEach items="${replyList}" var="reply">
+                        <tr>
+                            <td>${reply.replyWriter}</td>
+                            <td>${reply.replyContents}</td>
+                            <td><fmt:formatDate value="${reply.replyCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
         </div>
-    </div>
 </body>
 <script>
     const replyWrite = () => {
@@ -73,12 +72,12 @@
             success: function (result) {
                 console.log(result);
                 let output = "<table class='table'>";
-                output += "<th>작성자</th>";
+                output += "<tr><th>작성자</th>";
                 output += "<th>내용</th>";
                 output += "<th>작성시간</th></tr>";
                 for(let i in result){
                     output += "<tr>";
-                    output += "<td>"+result[i].replyWriter+"</td>";
+                    output += "<td>관리자</td>";
                     output += "<td>"+result[i].replyContents+"</td>";
                     output += "<td>"+moment(result[i].replyCreatedDate).format("YYYY-MM-DD HH:mm:ss")+"</td>";
                     output += "</tr>";

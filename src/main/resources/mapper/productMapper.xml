@@ -29,6 +29,12 @@
     <select id="searchCount" parameterType="String" resultType="int">
         select count(id) from product_table where productName like concat('%', #{search}, '%')
     </select>
+    <delete id="delete" parameterType="Long">
+        delete from product_table where id=#{id}
+    </delete>
+    <update id="update" parameterType="product">
+        update product_table set productName=#{productName}, productKind=#{productKind}, productPrice=#{productPrice}, productCount=#{productCount}, productDetail=#{productDetail}, productFileName=#{productFileName}
+    </update>
 </mapper>
 
 

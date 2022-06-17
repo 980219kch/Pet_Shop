@@ -114,4 +114,11 @@ public class ProductService {
         return paging;
     }
 
+    public void delete(Long id) {
+        productRepository.delete(id);
+    }
+
+    public void update(ProductDTO productDTO) {
+        productRepository.update(productDTO);
+    }
 }
