@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: kch80
   Date: 2022-06-14
-  Time: 오후 2:49
+  Time: 오후 1:46
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -41,10 +41,10 @@
                 <c:forEach items="${productList}" var="product">
                     <li>
                         <div class="productImg">
-                            <a href="/product/detail?productKind=용품&id=${product.id}"><img src="${pageContext.request.contextPath}/upload/${product.productFileName}" alt=""></a>
+                            <a href="/product/detail?productKind=${product.productKind}&id=${product.id}"><img src="${pageContext.request.contextPath}/upload/${product.productFileName}" alt=""></a>
                         </div>
                         <div class="productName">
-                            <a href="/product/detail?productKind=용품&id=${product.id}">${product.productName}</a>
+                            <a href="/product/detail?productKind=${product.productKind}&id=${product.id}">${product.productName}</a>
                         </div>
                         <div class="productPrice">
                             <div>${product.productPrice}원</div>
@@ -65,7 +65,7 @@
             </c:when>
             <c:otherwise>
                 <li class="page-item">
-                    <a class="page-link" href="/product/find?productKind=용품&page=${paging.page-1}">[이전]</a>
+                    <a class="page-link" href="/product/find?productKind=${productList.get(0).productKind}&page=${paging.page-1}">[이전]</a>
                 </li>
             </c:otherwise>
         </c:choose>
@@ -79,7 +79,8 @@
                 </c:when>
                 <c:otherwise>
                     <li class="page-item">
-                        <a class="page-link" href="/product/find?productKind=용품&page=${i}">${i}</a>
+                        <a class="page-link" href="/product/find?productKind=${productList.get(0).productKind}&page=${i}">${i}</a>
+
                     </li>
                 </c:otherwise>
             </c:choose>
@@ -92,7 +93,7 @@
             </c:when>
             <c:otherwise>
                 <li class="page-item">
-                    <a class="page-link" href="/product/find?productKind=용품&page=${paging.page+1}">[다음]</a>
+                    <a class="page-link" href="/product/find?productKind=${productList.get(0).productKind}&page=${paging.page+1}">[다음]</a>
                 </li>
             </c:otherwise>
         </c:choose>
@@ -102,4 +103,3 @@
 <script>
 </script>
 </html>
-

@@ -77,7 +77,7 @@
             pay_method: "card",
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: '결제',
-            amount: $(".finalTotalPrice_span"),
+            amount: $(".finalTotalPrice_span").text(),
             buyer_email: '${member.memberEmail}',
             buyer_name: '${member.memberName}',
             buyer_tel: '${member.memberMobile}',
@@ -86,7 +86,7 @@
             if(rsp.success) {
                 const msg = "결제가 완료되었습니다.";
                 alert(msg);
-                location.href = "/";
+                location.href = "/a";
             } else {
                 let msg = "결제에 실패하였습니다.";
                 msg += rsp.error_msg;

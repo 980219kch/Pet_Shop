@@ -14,5 +14,6 @@
     <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
     <a href="/member/findAll">회원목록 조회</a> <br>
     <a href="/product/save">상품 등록</a>
+    <a href="/product">상품목록 조회</a>
 </body>
 </html>
