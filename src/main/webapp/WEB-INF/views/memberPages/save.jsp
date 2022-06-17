@@ -20,12 +20,14 @@
             <div class="py-5 text-center">
                 <input class="form-control mb-2" type="text" id="memberId" name="memberId" onblur="duplicateCheck()" placeholder="아이디">
                 <p id="dup-check-result"></p>
-                <input class="form-control mb-2" type="text" id="memberPassword" name="memberPassword" placeholder="비밀번호">
+                <input class="form-control mb-2" type="text" id="memberPassword" name="memberPassword" placeholder="비밀번호" onblur="pwCheck()">
+                <span id="pw-check-result"></span>
                 <input class="form-control mb-2" type="text" name="memberName" placeholder="이름">
                 <input class="form-control mb-2" type="text" name="memberEmail" placeholder="이메일">
-                <input class="form-control mb-2" type="text" id="memberMobile" name="memberMobile" placeholder="전화번호">
-                <input class="form-control mb-2" type="text" id="sample6_postcode" placeholder="우편번호">
+                <input class="form-control mb-2" type="text" id="memberMobile" name="memberMobile" placeholder="전화번호" onblur="mobileCheck()">
+                <span id="mobile-check-result"></span><br>
                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                <input class="form-control mb-2" type="text" id="sample6_postcode" placeholder="우편번호">
                 <input class="form-control mb-2" type="text" id="sample6_address" name="memberAddress" placeholder="주소">
                 <input class="form-control mb-2" type="text" id="sample6_detailAddress" name="memberAddress" placeholder="상세주소">
                 <input class="form-control mb-2" type="text" id="sample6_extraAddress" name="memberAddress" placeholder="참고항목">
@@ -104,6 +106,28 @@
                 alert("오타체크");
             }
         });
+    }
+    const pwCheck = () => {
+        const pw = document.getElementById("memberPassword").value;
+        const exp = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$])[a-z\d!@#$]{8,15}$/;
+        const checkResult = document.getElementById("pw-check-result");
+        if(pw.match(exp)) {
+            checkResult.innerHTML = "사용 가능한 비밀번호 입니다.";
+            checkResult.style.color = "green";
+        } else {
+            checkResult.innerHTML = "영소문자,숫자,특수문자 !@#$를 포함한 8~15자리로 작성하세요.";
+            checkResult.style.color = "red";
+
+        }
+    }
+    const mobileCheck = () => {
+        const mobile = document.getElementById("memberMobile").value;
+        const exp = /^\d{3}-\d{4}-\d{4}$/;
+        const checkResult = document.getElementById("mobile-check-result");
+        if(!(mobile.match(exp))) {
+            checkResult.innerHTML = "옳지 않은 전화번호 형식입니다.";
+            checkResult.style.color = "red";
+        }
     }
 </script>
 </html>
